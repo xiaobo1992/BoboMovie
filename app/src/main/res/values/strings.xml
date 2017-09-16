@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BoboMovie</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="overview">Overview</string>
+
+</resources>
