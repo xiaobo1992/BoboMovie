@@ -1,4 +1,4 @@
-package com.bobo.normalman.bobomovie.Model;
+package com.bobo.normalman.bobomovie.model;
 
 /**
  * Created by xiaobozhang on 9/14/17.

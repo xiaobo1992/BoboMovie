@@ -2,7 +2,7 @@ package com.bobo.normalman.bobomovie.View.moviedetail;
 
 import android.support.v4.app.Fragment;
 
-import com.bobo.normalman.bobomovie.Model.Movie;
+import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.View.base.SingleFragmentActivity;
 import com.google.gson.reflect.TypeToken;

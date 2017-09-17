@@ -1,4 +1,4 @@
-package com.bobo.normalman.bobomovie.Model;
+package com.bobo.normalman.bobomovie.model;
 
 import java.util.List;
 

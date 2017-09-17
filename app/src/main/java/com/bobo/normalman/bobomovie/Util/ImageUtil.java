@@ -3,6 +3,7 @@ package com.bobo.normalman.bobomovie.Util;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bobo.normalman.bobomovie.R;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -16,7 +17,11 @@ public class ImageUtil {
     public static void loadImage(Context context, ImageView imageView, String poster_path) {
         String url = IMAGE_BASE_URL + IMAGE_SIZE + "/" + poster_path;
         try {
-            Picasso.with(context).load(url).into(imageView);
+            Picasso.with(context)
+                    .load(url)
+                    .placeholder(R.drawable.ic_local_movies_black_24px)
+                    .error(R.drawable.ic_local_movies_black_24px)
+                    .into(imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }

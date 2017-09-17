@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bobo.normalman.bobomovie.Model.Movie;
+import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.R;
 

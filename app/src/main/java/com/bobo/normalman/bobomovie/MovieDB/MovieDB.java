@@ -1,8 +1,8 @@
 package com.bobo.normalman.bobomovie.MovieDB;
 
-import com.bobo.normalman.bobomovie.Model.Movie;
-import com.bobo.normalman.bobomovie.Model.Result;
-import com.bobo.normalman.bobomovie.Model.Review;
+import com.bobo.normalman.bobomovie.model.Movie;
+import com.bobo.normalman.bobomovie.model.Result;
+import com.bobo.normalman.bobomovie.model.Review;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
