@@ -1,3 +1,8 @@
+/*
+I like to share this code, which can present the example of infinte loading on Android. 
+It bascialy combine both mix-typed adapter and Asynctask. 
+*/
+
 package com.bobo.normalman.bobomovie.View.movie_detail;
 
 import android.support.v7.widget.RecyclerView;
