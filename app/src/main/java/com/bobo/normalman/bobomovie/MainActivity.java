@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bobo.normalman.bobomovie.View.movie_list.MovieListFragment;
+import com.bobo.normalman.bobomovie.View.movielist.MovieListFragment;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;

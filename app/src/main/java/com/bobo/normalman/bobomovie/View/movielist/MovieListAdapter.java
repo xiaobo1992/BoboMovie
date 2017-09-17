@@ -1,8 +1,9 @@
-package com.bobo.normalman.bobomovie.View.movie_list;
+package com.bobo.normalman.bobomovie.View.movielist;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,8 @@ import com.bobo.normalman.bobomovie.Model.Movie;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.ImageUtil;
 import com.bobo.normalman.bobomovie.Util.ModelUtil;
-import com.bobo.normalman.bobomovie.View.movie_detail.MovieDetailActivity;
-import com.bobo.normalman.bobomovie.View.movie_detail.MovieDetailFragment;
+import com.bobo.normalman.bobomovie.View.moviedetail.MovieDetailActivity;
+import com.bobo.normalman.bobomovie.View.moviedetail.MovieDetailFragment;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;

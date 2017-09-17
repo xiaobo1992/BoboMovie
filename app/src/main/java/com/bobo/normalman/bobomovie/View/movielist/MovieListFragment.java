@@ -1,4 +1,4 @@
-package com.bobo.normalman.bobomovie.View.movie_list;
+package com.bobo.normalman.bobomovie.View.movielist;
 
 import android.content.res.Configuration;
 import android.os.AsyncTask;

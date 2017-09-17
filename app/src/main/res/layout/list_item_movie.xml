@@ -13,7 +13,7 @@
             android:id="@+id/movie_list_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/image_height"
-            android:padding="@dimen/small_padding" />
+            />
     </LinearLayout>
 
 

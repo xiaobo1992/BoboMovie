@@ -1,6 +1,7 @@
-package com.bobo.normalman.bobomovie.View.movie_detail;
+package com.bobo.normalman.bobomovie.View.moviedetail;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ class MovieDetailAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case KEY_VIEWTYPE_DETAIL:
+                Log.d("movie id", movie.id);
                 MovieDetailViewHolder viewHolder = (MovieDetailViewHolder) holder;
                 viewHolder.overview.setText(movie.overview);
                 viewHolder.rating.setText(String.valueOf(movie.vote_average));

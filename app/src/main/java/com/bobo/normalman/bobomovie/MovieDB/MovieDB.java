@@ -18,7 +18,7 @@ import okhttp3.Response;
  */
 
 public class MovieDB {
-    private static String API_KEY = "";
+    private static String API_KEY = "8a526ebf41d4e3192ffa6fe89d8f6d17";
     private static String BASE_URL = "https://api.themoviedb.org/3/";
     private static String BASE_MOVIE_URL = BASE_URL + "movie/";
 

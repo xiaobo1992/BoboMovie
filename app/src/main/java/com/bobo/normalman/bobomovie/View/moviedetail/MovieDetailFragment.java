@@ -1,4 +1,4 @@
-package com.bobo.normalman.bobomovie.View.movie_detail;
+package com.bobo.normalman.bobomovie.View.moviedetail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
