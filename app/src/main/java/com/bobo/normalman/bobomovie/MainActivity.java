@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.fragment_container, MovieListFragment.newInstance(MovieListFragment.KEY_POPULAR_TYPE))
                         .commit();
                 return true;
+            case R.id.menu_favourite:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, MovieListFragment.newInstance(MovieListFragment.KEY_TOP_FAVOURITE))
+                        .commit();
         }
         return super.onOptionsItemSelected(item);
     }

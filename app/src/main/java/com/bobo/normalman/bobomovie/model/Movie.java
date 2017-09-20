@@ -11,4 +11,5 @@ public class Movie {
     public String release_date;
     public Double vote_average;
     public String poster_path;
+    public boolean liked;
 }

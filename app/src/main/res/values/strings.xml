@@ -3,5 +3,6 @@
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>
     <string name="overview">Overview</string>
+    <string name="favourite">Favourite</string>
 
 </resources>

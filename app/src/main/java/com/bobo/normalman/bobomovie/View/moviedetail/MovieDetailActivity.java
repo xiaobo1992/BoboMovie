@@ -1,6 +1,7 @@
 package com.bobo.normalman.bobomovie.View.moviedetail;
 
 import android.support.v4.app.Fragment;
+import android.view.MenuItem;
 
 import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.Util.ModelUtil;
@@ -22,4 +23,12 @@ public class MovieDetailActivity extends SingleFragmentActivity {
         return MovieDetailFragment.newInstance(getIntent().getExtras());
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

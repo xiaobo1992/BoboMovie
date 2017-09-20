@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.ImageUtil;
 import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.View.moviedetail.MovieDetailActivity;
 import com.bobo.normalman.bobomovie.View.moviedetail.MovieDetailFragment;
+import com.bobo.normalman.bobomovie.model.Movie;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
@@ -26,10 +26,14 @@ public class MovieListAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_MOVIE = 0;
     private static final int VIEW_TYPE_LOADING = 1;
     private loadMoreListener loadMoreListener;
+    private MovieListFragment fragment;
+    private boolean enableLoading;
 
-    public MovieListAdapter(List<Movie> movies, loadMoreListener listener) {
+    public MovieListAdapter(MovieListFragment fragment, boolean enableLoading, List<Movie> movies, loadMoreListener listener) {
         this.data = movies;
         this.loadMoreListener = listener;
+        this.fragment = fragment;
+        this.enableLoading = enableLoading;
     }
 
     @Override
@@ -44,7 +48,9 @@ public class MovieListAdapter extends RecyclerView.Adapter {
         int viewType = getItemViewType(position);
         switch (viewType) {
             case VIEW_TYPE_LOADING:
-                loadMoreListener.loadMore();
+                if (enableLoading) {
+                    loadMoreListener.loadMore();
+                }
                 break;
             case VIEW_TYPE_MOVIE:
                 final MovieListHolder movieListHolder = (MovieListHolder) holder;
@@ -68,7 +74,7 @@ public class MovieListAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return data.size() + 1;
+        return enableLoading ? data.size() + 1 : data.size();
     }
 
     @Override
@@ -85,11 +91,21 @@ public class MovieListAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
+    public void setData(List<Movie> movies) {
+        data.clear();
+        data.addAll(movies);
+        notifyDataSetChanged();
+    }
+
     public int getDataCount() {
         return data.size();
     }
 
     public interface loadMoreListener {
         void loadMore();
+    }
+
+    public void setEnableLoading(boolean enableLoading) {
+        this.enableLoading = enableLoading;
     }
 }

@@ -12,7 +12,7 @@ import com.bobo.normalman.bobomovie.R;
  */
 
 public class MovieDetailViewHolder extends RecyclerView.ViewHolder {
-    ImageView imageView;
+    ImageView imageView, like;
     TextView title, release, rating, overview;
 
     public MovieDetailViewHolder(View itemView) {
@@ -22,5 +22,6 @@ public class MovieDetailViewHolder extends RecyclerView.ViewHolder {
         release = itemView.findViewById(R.id.movie_detail_release_date);
         rating = itemView.findViewById(R.id.movie_detail_rating);
         overview = itemView.findViewById(R.id.movie_detail_overview);
+        like = itemView.findViewById(R.id.movie_detail_like);
     }
 }
