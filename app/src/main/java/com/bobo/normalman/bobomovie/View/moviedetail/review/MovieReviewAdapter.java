@@ -1,11 +1,9 @@
 package com.bobo.normalman.bobomovie.View.moviedetail.review;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.model.Review;
@@ -16,12 +14,12 @@ import java.util.List;
  * Created by xiaobozhang on 9/20/17.
  */
 
-public class MovieReviewAdapter extends RecyclerView.Adapter {
-    List<Review> reviews;
-    Boolean enableLoading;
-    LoadMoreListener listener;
-    public static final int VIEW_TYPE_REVIEW = 0;
-    public static final int VIEW_TYPE_LOADING = 1;
+class MovieReviewAdapter extends RecyclerView.Adapter {
+    private final List<Review> reviews;
+    private Boolean enableLoading;
+    private final LoadMoreListener listener;
+    private static final int VIEW_TYPE_REVIEW = 0;
+    private static final int VIEW_TYPE_LOADING = 1;
 
     public MovieReviewAdapter(List<Review> reviews, boolean enableLoading, LoadMoreListener listener) {
         this.reviews = reviews;

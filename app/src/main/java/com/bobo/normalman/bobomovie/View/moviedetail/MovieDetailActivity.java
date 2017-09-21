@@ -15,6 +15,7 @@ import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.View.moviedetail.profile.MovieProfileFragment;
 import com.bobo.normalman.bobomovie.View.moviedetail.review.MovieReviewFragment;
+import com.bobo.normalman.bobomovie.View.moviedetail.video.MovieVideoFragment;
 import com.bobo.normalman.bobomovie.model.Movie;
 import com.google.gson.reflect.TypeToken;
 
@@ -23,10 +24,7 @@ import com.google.gson.reflect.TypeToken;
  */
 
 public class MovieDetailActivity extends AppCompatActivity {
-    ViewPager viewPager;
-    TabLayout tabLayout;
-    Toolbar toolbar;
-    Movie movie;
+    private Movie movie;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,17 +36,17 @@ public class MovieDetailActivity extends AppCompatActivity {
         setToolbar();
     }
 
-    public void setToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    public void setViewPager() {
-        viewPager = (ViewPager) findViewById(R.id.movie_detail_pager);
+    private void setViewPager() {
+        ViewPager viewPager = (ViewPager) findViewById(R.id.movie_detail_pager);
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
-        tabLayout = (TabLayout) findViewById(R.id.movie_detail_tab);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.movie_detail_tab);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -76,7 +74,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 case 1:
                     return MovieReviewFragment.newInstance(movie.id);
                 case 2:
-                    return null;
+                    return MovieVideoFragment.newInstance(movie.id);
                 default:
                     return null;
             }
@@ -89,13 +87,15 @@ public class MovieDetailActivity extends AppCompatActivity {
                     return getResources().getString(R.string.overview);
                 case 1:
                     return getResources().getString(R.string.review);
+                case 2:
+                    return getResources().getString(R.string.video);
             }
             return super.getPageTitle(position);
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
     }
 

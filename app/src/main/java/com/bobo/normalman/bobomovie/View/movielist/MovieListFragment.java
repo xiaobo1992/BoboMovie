@@ -1,6 +1,5 @@
 package com.bobo.normalman.bobomovie.View.movielist;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.LikeMovieUtil;
-import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract;
 import com.bobo.normalman.bobomovie.model.Movie;
 
 import java.io.IOException;
@@ -33,7 +31,7 @@ public class MovieListFragment extends Fragment {
     public static final String KEY_TOP_TYPE = "top_rated";
     public static final String KEY_TOP_FAVOURITE = "favourite";
 
-    private static int COUNT_PER_PAGE = 20;
+    private static final int COUNT_PER_PAGE = 20;
     private MovieListAdapter adapter = null;
     private RecyclerView recycleView = null;
     private String type = null;
@@ -75,7 +73,7 @@ public class MovieListFragment extends Fragment {
                 });
                 break;
             case KEY_TOP_FAVOURITE:
-                List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext(), LikeMovieContract.LikeMovieEntry.CONTENT_URI);
+                List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext());
                 adapter = new MovieListAdapter(this, false, movies, new MovieListAdapter.LoadMoreListener() {
                     @Override
                     public void loadMore() {
@@ -98,14 +96,14 @@ public class MovieListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (type == KEY_TOP_FAVOURITE) {
-            List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext(), LikeMovieContract.LikeMovieEntry.CONTENT_URI);
+            List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext());
             adapter.setData(movies);
         }
     }
 
     public class LoadMoviesTask extends AsyncTask<Void, Void, List<Movie>> {
-        int page;
-        String type;
+        final int page;
+        final String type;
 
         public LoadMoviesTask(String type, int page) {
             this.page = page;

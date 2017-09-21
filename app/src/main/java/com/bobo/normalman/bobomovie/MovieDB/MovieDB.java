@@ -1,11 +1,11 @@
 package com.bobo.normalman.bobomovie.MovieDB;
 
-import android.util.Log;
-
 import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.model.Result;
 import com.bobo.normalman.bobomovie.model.Review;
 import com.bobo.normalman.bobomovie.model.ReviewResult;
+import com.bobo.normalman.bobomovie.model.Video;
+import com.bobo.normalman.bobomovie.model.VideoResult;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,9 +21,9 @@ import okhttp3.Response;
  */
 
 public class MovieDB {
-    private static String API_KEY = "";
-    private static String BASE_URL = "https://api.themoviedb.org/3/";
-    private static String BASE_MOVIE_URL = BASE_URL + "movie/";
+    private static final String API_KEY = "";
+    private static final String BASE_URL = "https://api.themoviedb.org/3/";
+    private static final String BASE_MOVIE_URL = BASE_URL + "movie/";
 
     private static Response makeGetRequest(Request request) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -58,6 +58,13 @@ public class MovieDB {
         String url = BASE_MOVIE_URL + movie_id + "/reviews?api_key=" + API_KEY + "&page=" + page;
         Request request = buildGetRequest(url);
         ReviewResult result =  parseResponse(makeGetRequest(request), new TypeToken<ReviewResult>() {});
+        return result.results;
+    }
+
+    public static List<Video> getVideos(String movie_id, int page) throws IOException{
+        String url = BASE_MOVIE_URL + movie_id + "/videos?api_key=" + API_KEY + "&page=" + page;
+        Request request = buildGetRequest(url);
+        VideoResult result =  parseResponse(makeGetRequest(request), new TypeToken<VideoResult>() {});
         return result.results;
     }
 }

@@ -10,10 +10,10 @@ import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract.LikeMovieEntry;
  * Created by xiaobozhang on 9/19/17.
  */
 
-public class LikeMovieDBHelper extends SQLiteOpenHelper {
+class LikeMovieDBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "likemovie.db";
-    public static final int DB_VERSION = 1;
+    private static final String DATABASE_NAME = "likemovie.db";
+    private static final int DB_VERSION = 1;
 
     public LikeMovieDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DB_VERSION);

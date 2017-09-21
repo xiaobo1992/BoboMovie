@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.util.Log;
 
 import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract.LikeMovieEntry;
 import com.bobo.normalman.bobomovie.model.Movie;
@@ -19,9 +17,9 @@ import java.util.List;
 
 public class LikeMovieUtil {
 
-    public static boolean isLike(Context context, Uri uri, Movie movie) {
+    public static boolean isLike(Context context, Movie movie) {
         Cursor cursor = context.getContentResolver()
-                .query(uri,
+                .query(LikeMovieEntry.CONTENT_URI,
                         null,
                         LikeMovieEntry.COLUMN_NAME_MOVIE_ID + " = ?",
                         new String[]{movie.id},
@@ -29,7 +27,7 @@ public class LikeMovieUtil {
         return cursor.getCount() == 1;
     }
 
-    public static void LikeMovie(Context context, Uri uri, Movie movie) {
+    public static void LikeMovie(Context context, Movie movie) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(LikeMovieEntry.COLUMN_NAME_MOVIE_ID, movie.id);
         contentValues.put(LikeMovieEntry.COLUMN_NAME_TITLE, movie.title);
@@ -37,18 +35,18 @@ public class LikeMovieUtil {
         contentValues.put(LikeMovieEntry.COLUMN_NAME_OVERVIEW, movie.overview);
         contentValues.put(LikeMovieEntry.COLUMN_NAME_RELEASE_DATE, movie.release_date);
         contentValues.put(LikeMovieEntry.COLUMN_NAME_VOTE_AVERAGE, movie.vote_average);
-        context.getContentResolver().insert(uri, contentValues);
+        context.getContentResolver().insert(LikeMovieEntry.CONTENT_URI, contentValues);
     }
 
-    public static void disLikeMovie(Context context, Uri uri, Movie movie) {
-        context.getContentResolver().delete(uri, LikeMovieEntry.COLUMN_NAME_MOVIE_ID + " = ?",
+    public static void disLikeMovie(Context context, Movie movie) {
+        context.getContentResolver().delete(LikeMovieEntry.CONTENT_URI, LikeMovieEntry.COLUMN_NAME_MOVIE_ID + " = ?",
                 new String[]{movie.id});
     }
 
-    public static List<Movie> loadAllLikedMovie(Context context, Uri uri) {
+    public static List<Movie> loadAllLikedMovie(Context context) {
         List<Movie> movies = new ArrayList<>();
         Cursor cursor = context.getContentResolver()
-                .query(uri, null, null, null, null);
+                .query(LikeMovieEntry.CONTENT_URI, null, null, null, null);
         int movieIdIndex = cursor.getColumnIndex(LikeMovieEntry.COLUMN_NAME_MOVIE_ID);
         int titleIndex = cursor.getColumnIndex(LikeMovieEntry.COLUMN_NAME_TITLE);
         int posterIndex = cursor.getColumnIndex(LikeMovieEntry.COLUMN_NAME_POSTER_PATH);

@@ -17,11 +17,11 @@ import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract.LikeMovieEntry;
  */
 
 public class LikeMovieContentProvider extends ContentProvider {
-    LikeMovieDBHelper dbHelper;
-    UriMatcher matcher = buildUriMatcher();
+    private LikeMovieDBHelper dbHelper;
+    private final UriMatcher matcher = buildUriMatcher();
 
-    public static final int LIKE_MOVIES = 100;
-    public static final int LIKE_MOVIES_WITH_ID = 101;
+    private static final int LIKE_MOVIES = 100;
+    private static final int LIKE_MOVIES_WITH_ID = 101;
 
     @Override
     public boolean onCreate() {
@@ -29,7 +29,7 @@ public class LikeMovieContentProvider extends ContentProvider {
         return true;
     }
 
-    public UriMatcher buildUriMatcher() {
+    private UriMatcher buildUriMatcher() {
         UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         matcher.addURI(LikeMovieContract.AUTHORITY, LikeMovieContract.PATH_LIKEMOVIES, LIKE_MOVIES);
         matcher.addURI(LikeMovieContract.AUTHORITY,

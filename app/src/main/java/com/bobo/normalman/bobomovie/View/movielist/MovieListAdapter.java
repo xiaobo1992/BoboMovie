@@ -21,18 +21,17 @@ import java.util.List;
  * Created by xiaobozhang on 9/14/17.
  */
 
-public class MovieListAdapter extends RecyclerView.Adapter {
-    private List<Movie> data;
+class MovieListAdapter extends RecyclerView.Adapter {
+    private final List<Movie> data;
     private static final int VIEW_TYPE_MOVIE = 0;
     private static final int VIEW_TYPE_LOADING = 1;
-    private LoadMoreListener loadMoreListener;
-    private MovieListFragment fragment;
+    private final LoadMoreListener loadMoreListener;
     private boolean enableLoading;
 
     public MovieListAdapter(MovieListFragment fragment, boolean enableLoading, List<Movie> movies, LoadMoreListener listener) {
         this.data = movies;
         this.loadMoreListener = listener;
-        this.fragment = fragment;
+        MovieListFragment fragment1 = fragment;
         this.enableLoading = enableLoading;
     }
 

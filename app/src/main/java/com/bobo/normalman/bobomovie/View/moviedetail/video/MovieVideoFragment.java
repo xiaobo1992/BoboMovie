@@ -1,4 +1,4 @@
-package com.bobo.normalman.bobomovie.View.moviedetail.review;
+package com.bobo.normalman.bobomovie.View.moviedetail.video;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,8 +14,9 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.View.base.SpaceItemDecoration;
-import com.bobo.normalman.bobomovie.model.Review;
+import com.bobo.normalman.bobomovie.model.Video;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +24,15 @@ import java.util.List;
  * Created by xiaobozhang on 9/20/17.
  */
 
-public class MovieReviewFragment extends Fragment {
-    private static final String KEY_MOVIE_ID = "MOVIE_ID";
+public class MovieVideoFragment extends Fragment {
     private final int COUNT_PER_PAGE = 20;
+    private static final String KEY_MOVIE_ID = "MOVIE_ID";
     private RecyclerView recycleView;
-    private MovieReviewAdapter adapter;
+    private MovieVideoAdapter adapter;
 
-    public static MovieReviewFragment newInstance(String movieId) {
+    public static MovieVideoFragment newInstance(String movieId) {
         Bundle args = new Bundle();
-        MovieReviewFragment fragment = new MovieReviewFragment();
+        MovieVideoFragment fragment = new MovieVideoFragment();
         args.putString(KEY_MOVIE_ID, movieId);
         fragment.setArguments(args);
         return fragment;
@@ -48,42 +49,42 @@ public class MovieReviewFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         final String movieId = getArguments().getString(KEY_MOVIE_ID);
-        adapter = new MovieReviewAdapter(new ArrayList<Review>(), true, new MovieReviewAdapter.LoadMoreListener() {
+        adapter = new MovieVideoAdapter(new ArrayList<Video>(), true, new MovieVideoAdapter.LoadMoreListener() {
             @Override
             public void loadMore() {
-                AsyncTaskCompat.executeParallel(new LoadReviewTask(movieId,
-                        adapter.getDataCount() / COUNT_PER_PAGE + 1));
+                AsyncTaskCompat.executeParallel(new LoadVideosTask(movieId, adapter.getDataCount() / COUNT_PER_PAGE + 1));
             }
         });
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.small_padding)));
+
     }
 
-    public class LoadReviewTask extends AsyncTask<Void, Void, List<Review>> {
+    public class LoadVideosTask extends AsyncTask<Void, Void, List<Video>> {
         final String movieId;
         final int page;
 
-        public LoadReviewTask(String movieId, int page) {
+        public LoadVideosTask(String movieId, int page) {
             this.movieId = movieId;
             this.page = page;
         }
 
         @Override
-        protected List<Review> doInBackground(Void... voids) {
+        protected List<Video> doInBackground(Void... voids) {
             try {
-                return MovieDB.getReviews(movieId, page);
-            } catch (Exception e) {
+                return MovieDB.getVideos(movieId, page);
+            } catch (IOException e) {
                 e.printStackTrace();
                 return null;
             }
         }
 
         @Override
-        protected void onPostExecute(List<Review> reviews) {
-            if (reviews != null) {
-                adapter.appendReviews(reviews);
-                adapter.setEnableLoading(reviews.size() == COUNT_PER_PAGE);
+        protected void onPostExecute(List<Video> videos) {
+            if (videos != null) {
+                adapter.appendVideos(videos);
+                adapter.setEnableLoading(videos.size() == COUNT_PER_PAGE);
             }
         }
     }

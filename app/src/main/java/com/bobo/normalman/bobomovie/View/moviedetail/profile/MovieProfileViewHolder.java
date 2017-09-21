@@ -11,9 +11,13 @@ import com.bobo.normalman.bobomovie.R;
  * Created by xiaobozhang on 9/15/17.
  */
 
-public class MovieProfileViewHolder extends RecyclerView.ViewHolder {
-    ImageView imageView, like;
-    TextView title, release, rating, overview;
+class MovieProfileViewHolder extends RecyclerView.ViewHolder {
+    final ImageView imageView;
+    final ImageView like;
+    final TextView title;
+    final TextView release;
+    final TextView rating;
+    final TextView overview;
 
     public MovieProfileViewHolder(View itemView) {
         super(itemView);

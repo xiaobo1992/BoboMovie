@@ -20,7 +20,6 @@ import com.google.gson.reflect.TypeToken;
 
 public class MovieProfileFragment extends Fragment {
     private RecyclerView recycleView = null;
-    private MovieProfileAdapter adapter = null;
     public static final String KEY_MOVE = "MOVIE";
 
     public static MovieProfileFragment newInstance(Bundle args) {
@@ -41,7 +40,7 @@ public class MovieProfileFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Movie movie = ModelUtil.toObject(getArguments().getString(KEY_MOVE), new TypeToken<Movie>() {
         });
-        adapter = new MovieProfileAdapter(movie);
+        MovieProfileAdapter adapter = new MovieProfileAdapter(movie);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
     }

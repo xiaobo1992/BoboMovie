@@ -11,4 +11,5 @@
     <dimen name="xlarge_text_size">30sp</dimen>
 
     <dimen name="image_height">200dp</dimen>
+    <dimen name="icon_size">60dp</dimen>
 </resources>

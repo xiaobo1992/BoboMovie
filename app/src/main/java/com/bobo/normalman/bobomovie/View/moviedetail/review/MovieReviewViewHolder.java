@@ -10,12 +10,13 @@ import com.bobo.normalman.bobomovie.R;
  * Created by xiaobozhang on 9/20/17.
  */
 
-public class MovieReviewViewHolder extends RecyclerView.ViewHolder {
-    TextView author, content;
+class MovieReviewViewHolder extends RecyclerView.ViewHolder {
+    final TextView author;
+    final TextView content;
 
     public MovieReviewViewHolder(View itemView) {
         super(itemView);
-        author = (TextView) itemView.findViewById(R.id.movie_review_author);
-        content = (TextView) itemView.findViewById(R.id.movie_review_content);
+        author = itemView.findViewById(R.id.movie_review_author);
+        content = itemView.findViewById(R.id.movie_review_content);
     }
 }

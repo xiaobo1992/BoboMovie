@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".View.moviedetail.profile.MovieProfileActivity" />
         <activity android:name=".View.moviedetail.MovieDetailActivity"/>
+        <activity android:name=".View.moviedetail.PlayVideoActivity"/>
         <provider
             android:name="com.bobo.normalman.bobomovie.likemovie.LikeMovieContentProvider"
             android:authorities="com.bobo.normalman.bobomovie"

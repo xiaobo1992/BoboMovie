@@ -11,10 +11,10 @@ import com.squareup.picasso.Picasso;
  */
 
 public class ImageUtil {
-    private static String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
-    private static String IMAGE_SIZE = "w500";
 
     public static void loadImage(Context context, ImageView imageView, String poster_path) {
+        String IMAGE_SIZE = "w500";
+        String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
         String url = IMAGE_BASE_URL + IMAGE_SIZE + "/" + poster_path;
         try {
             Picasso.with(context)

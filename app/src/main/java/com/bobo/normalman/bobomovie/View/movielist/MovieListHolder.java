@@ -10,8 +10,8 @@ import com.bobo.normalman.bobomovie.R;
  * Created by xiaobozhang on 9/14/17.
  */
 
-public class MovieListHolder extends RecyclerView.ViewHolder {
-    ImageView imageView;
+class MovieListHolder extends RecyclerView.ViewHolder {
+    final ImageView imageView;
 
     public MovieListHolder(View itemView) {
         super(itemView);

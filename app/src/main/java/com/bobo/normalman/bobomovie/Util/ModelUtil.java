@@ -12,8 +12,8 @@ import com.google.gson.reflect.TypeToken;
  */
 
 public class ModelUtil {
-    static Gson gson = new Gson();
-    private static String SP_NAME = "MODEL";
+    private static final Gson gson = new Gson();
+    private static final String SP_NAME = "MODEL";
 
     public static void save(Context context, String key, Object obj) {
         SharedPreferences sp = context.getApplicationContext().getSharedPreferences(SP_NAME, Activity.MODE_PRIVATE);

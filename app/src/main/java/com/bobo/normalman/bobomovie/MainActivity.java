@@ -9,12 +9,11 @@ import android.view.MenuItem;
 import com.bobo.normalman.bobomovie.View.movielist.MovieListFragment;
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (savedInstanceState == null) {
             getSupportFragmentManager()

@@ -7,7 +7,6 @@ package com.bobo.normalman.bobomovie.View.moviedetail.profile;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.ImageUtil;
 import com.bobo.normalman.bobomovie.Util.LikeMovieUtil;
-import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract.LikeMovieEntry;
 import com.bobo.normalman.bobomovie.model.Movie;
 
 /**
@@ -23,7 +21,7 @@ import com.bobo.normalman.bobomovie.model.Movie;
  */
 
 class MovieProfileAdapter extends RecyclerView.Adapter {
-    private Movie movie;
+    private final Movie movie;
 
     private static final int KEY_VIEWTYPE_DETAIL = 0;
     private static final int KEY_VIEWTYPE_REVIEW = 1;
@@ -56,7 +54,7 @@ class MovieProfileAdapter extends RecyclerView.Adapter {
                 viewHolder.release.setText(movie.release_date);
                 ImageUtil.loadImage(viewHolder.itemView.getContext(), viewHolder.imageView, movie.poster_path);
                 movie.liked = LikeMovieUtil.isLike(viewHolder.itemView.getContext(),
-                        LikeMovieEntry.CONTENT_URI, movie);
+                        movie);
                 Drawable drawable = movie.liked ?
                         ContextCompat.getDrawable(viewHolder.itemView.getContext(), R.drawable.ic_favorite_pink_24px) :
                         ContextCompat.getDrawable(viewHolder.itemView.getContext(), R.drawable.ic_favorite_black_24px);
@@ -66,11 +64,11 @@ class MovieProfileAdapter extends RecyclerView.Adapter {
                     public void onClick(final View view) {
                         if (!movie.liked) {
                             LikeMovieUtil.LikeMovie(viewHolder.itemView.getContext(),
-                                    LikeMovieEntry.CONTENT_URI, movie);
+                                    movie);
                             notifyDataSetChanged();
                         } else {
                             LikeMovieUtil.disLikeMovie(viewHolder.itemView.getContext(),
-                                    LikeMovieEntry.CONTENT_URI, movie);
+                                    movie);
                             notifyDataSetChanged();
                         }
                     }
