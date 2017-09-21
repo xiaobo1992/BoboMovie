@@ -59,7 +59,7 @@ public class MovieListFragment extends Fragment {
         type = getArguments().getString(KEY_TYPE);
         switch (type) {
             case KEY_POPULAR_TYPE:
-                adapter = new MovieListAdapter(this, true, new ArrayList<Movie>(), new MovieListAdapter.loadMoreListener() {
+                adapter = new MovieListAdapter(this, true, new ArrayList<Movie>(), new MovieListAdapter.LoadMoreListener() {
                     @Override
                     public void loadMore() {
                         AsyncTaskCompat.executeParallel(new LoadMoviesTask(type, adapter.getDataCount() / COUNT_PER_PAGE + 1));
@@ -67,7 +67,7 @@ public class MovieListFragment extends Fragment {
                 });
                 break;
             case KEY_TOP_TYPE:
-                adapter = new MovieListAdapter(this, true, new ArrayList<Movie>(), new MovieListAdapter.loadMoreListener() {
+                adapter = new MovieListAdapter(this, true, new ArrayList<Movie>(), new MovieListAdapter.LoadMoreListener() {
                     @Override
                     public void loadMore() {
                         AsyncTaskCompat.executeParallel(new LoadMoviesTask(type, adapter.getDataCount() / COUNT_PER_PAGE + 1));
@@ -76,7 +76,7 @@ public class MovieListFragment extends Fragment {
                 break;
             case KEY_TOP_FAVOURITE:
                 List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext(), LikeMovieContract.LikeMovieEntry.CONTENT_URI);
-                adapter = new MovieListAdapter(this, false, movies, new MovieListAdapter.loadMoreListener() {
+                adapter = new MovieListAdapter(this, false, movies, new MovieListAdapter.LoadMoreListener() {
                     @Override
                     public void loadMore() {
                         AsyncTaskCompat.executeParallel(new LoadMoviesTask(type, adapter.getDataCount() / COUNT_PER_PAGE + 1));

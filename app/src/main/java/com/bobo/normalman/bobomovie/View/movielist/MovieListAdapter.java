@@ -11,7 +11,7 @@ import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.ImageUtil;
 import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.View.moviedetail.MovieDetailActivity;
-import com.bobo.normalman.bobomovie.View.moviedetail.MovieDetailFragment;
+import com.bobo.normalman.bobomovie.View.moviedetail.profile.MovieProfileFragment;
 import com.bobo.normalman.bobomovie.model.Movie;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,11 +25,11 @@ public class MovieListAdapter extends RecyclerView.Adapter {
     private List<Movie> data;
     private static final int VIEW_TYPE_MOVIE = 0;
     private static final int VIEW_TYPE_LOADING = 1;
-    private loadMoreListener loadMoreListener;
+    private LoadMoreListener loadMoreListener;
     private MovieListFragment fragment;
     private boolean enableLoading;
 
-    public MovieListAdapter(MovieListFragment fragment, boolean enableLoading, List<Movie> movies, loadMoreListener listener) {
+    public MovieListAdapter(MovieListFragment fragment, boolean enableLoading, List<Movie> movies, LoadMoreListener listener) {
         this.data = movies;
         this.loadMoreListener = listener;
         this.fragment = fragment;
@@ -64,7 +64,7 @@ public class MovieListAdapter extends RecyclerView.Adapter {
                         Intent intent = new Intent(context, MovieDetailActivity.class);
                         String movieStr = ModelUtil.toString(movie, new TypeToken<Movie>() {
                         });
-                        intent.putExtra(MovieDetailFragment.KEY_MOVE, movieStr);
+                        intent.putExtra(MovieProfileFragment.KEY_MOVE, movieStr);
                         context.startActivity(intent);
                     }
                 });
@@ -101,7 +101,7 @@ public class MovieListAdapter extends RecyclerView.Adapter {
         return data.size();
     }
 
-    public interface loadMoreListener {
+    public interface LoadMoreListener {
         void loadMore();
     }
 

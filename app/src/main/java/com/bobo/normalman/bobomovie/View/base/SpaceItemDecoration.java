@@ -8,7 +8,7 @@ import android.view.View;
  * Created by xiaobozhang on 9/15/17.
  */
 
-class SpaceItemDecoration extends RecyclerView.ItemDecoration {
+public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
     private int space;
 
     public SpaceItemDecoration(int space) {

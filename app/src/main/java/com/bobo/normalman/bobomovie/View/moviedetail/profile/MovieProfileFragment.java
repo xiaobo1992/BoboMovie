@@ -1,8 +1,5 @@
-package com.bobo.normalman.bobomovie.View.moviedetail;
+package com.bobo.normalman.bobomovie.View.moviedetail.profile;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,13 +18,13 @@ import com.google.gson.reflect.TypeToken;
  * Created by xiaobozhang on 9/15/17.
  */
 
-public class MovieDetailFragment extends Fragment {
+public class MovieProfileFragment extends Fragment {
     private RecyclerView recycleView = null;
-    private MovieDetailAdapter adapter = null;
+    private MovieProfileAdapter adapter = null;
     public static final String KEY_MOVE = "MOVIE";
 
-    public static MovieDetailFragment newInstance(Bundle args) {
-        MovieDetailFragment fragment = new MovieDetailFragment();
+    public static MovieProfileFragment newInstance(Bundle args) {
+        MovieProfileFragment fragment = new MovieProfileFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,7 +41,7 @@ public class MovieDetailFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Movie movie = ModelUtil.toObject(getArguments().getString(KEY_MOVE), new TypeToken<Movie>() {
         });
-        adapter = new MovieDetailAdapter(movie);
+        adapter = new MovieProfileAdapter(movie);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
     }

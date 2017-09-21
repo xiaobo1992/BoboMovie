@@ -2,7 +2,7 @@
 I like to share this code, which can present the example of infinte loading on Android.
 It bascialy combine both mix-typed adapter and Asynctask.
 */
-package com.bobo.normalman.bobomovie.View.moviedetail;
+package com.bobo.normalman.bobomovie.View.moviedetail.profile;
 
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.ImageUtil;
 import com.bobo.normalman.bobomovie.Util.LikeMovieUtil;
-import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract;
 import com.bobo.normalman.bobomovie.likemovie.LikeMovieContract.LikeMovieEntry;
 import com.bobo.normalman.bobomovie.model.Movie;
 
@@ -23,13 +22,13 @@ import com.bobo.normalman.bobomovie.model.Movie;
  * Created by xiaobozhang on 9/15/17.
  */
 
-class MovieDetailAdapter extends RecyclerView.Adapter {
+class MovieProfileAdapter extends RecyclerView.Adapter {
     private Movie movie;
 
     private static final int KEY_VIEWTYPE_DETAIL = 0;
     private static final int KEY_VIEWTYPE_REVIEW = 1;
 
-    public MovieDetailAdapter(Movie movie) {
+    public MovieProfileAdapter(Movie movie) {
         this.movie = movie;
     }
 
@@ -40,11 +39,7 @@ class MovieDetailAdapter extends RecyclerView.Adapter {
             case KEY_VIEWTYPE_DETAIL:
                 view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.fragment_movie_detail, parent, false);
-                return new MovieDetailViewHolder(view);
-            case KEY_VIEWTYPE_REVIEW:
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.fragment_movie_review, parent, false);
-                return new MovieDetailReviewHolder(view);
+                return new MovieProfileViewHolder(view);
             default:
                 return null;
         }
@@ -54,8 +49,7 @@ class MovieDetailAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case KEY_VIEWTYPE_DETAIL:
-                Log.d("movie id", movie.id);
-                final MovieDetailViewHolder viewHolder = (MovieDetailViewHolder) holder;
+                final MovieProfileViewHolder viewHolder = (MovieProfileViewHolder) holder;
                 viewHolder.overview.setText(movie.overview);
                 viewHolder.rating.setText(String.valueOf(movie.vote_average));
                 viewHolder.title.setText(movie.title);
