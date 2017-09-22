@@ -15,8 +15,8 @@ import java.util.List;
  */
 
 class MovieReviewAdapter extends RecyclerView.Adapter {
-    private final List<Review> reviews;
-    private Boolean enableLoading;
+    public final List<Review> reviews;
+    public Boolean enableLoading;
     private final LoadMoreListener listener;
     private static final int VIEW_TYPE_REVIEW = 0;
     private static final int VIEW_TYPE_LOADING = 1;

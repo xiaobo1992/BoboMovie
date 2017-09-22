@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.R;
+import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.View.base.SpaceItemDecoration;
 import com.bobo.normalman.bobomovie.model.Video;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,8 +29,11 @@ import java.util.List;
 public class MovieVideoFragment extends Fragment {
     private final int COUNT_PER_PAGE = 20;
     private static final String KEY_MOVIE_ID = "MOVIE_ID";
-    private RecyclerView recycleView;
-    private MovieVideoAdapter adapter;
+    private RecyclerView recycleView = null;
+    private MovieVideoAdapter adapter = null;
+    private static final String KEY_STATE = "state";
+    private static final String KEY_VIDEOS = "videos";
+    private static final String KEY_ENABLE_LOADING = "loading";
 
     public static MovieVideoFragment newInstance(String movieId) {
         Bundle args = new Bundle();
@@ -59,6 +64,30 @@ public class MovieVideoFragment extends Fragment {
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.small_padding)));
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_STATE, recycleView.getLayoutManager().onSaveInstanceState());
+        outState.putString(KEY_VIDEOS,
+                ModelUtil.toString(adapter.videos, new TypeToken<List<Video>>() {
+                }));
+        outState.putBoolean(KEY_ENABLE_LOADING, adapter.enableLoading);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            List<Video> videos = ModelUtil.toObject(savedInstanceState.getString(KEY_VIDEOS),
+                    new TypeToken<List<Video>>() {
+                    });
+            adapter.appendVideos(videos);
+            adapter.setEnableLoading(savedInstanceState.getBoolean(KEY_ENABLE_LOADING));
+            recycleView.getLayoutManager()
+                    .onRestoreInstanceState(savedInstanceState.getParcelable(KEY_STATE));
+        }
     }
 
     public class LoadVideosTask extends AsyncTask<Void, Void, List<Video>> {

@@ -2,6 +2,7 @@ package com.bobo.normalman.bobomovie.View.moviedetail.review;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.os.AsyncTaskCompat;
@@ -13,8 +14,10 @@ import android.view.ViewGroup;
 
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.R;
+import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.View.base.SpaceItemDecoration;
 import com.bobo.normalman.bobomovie.model.Review;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +29,12 @@ import java.util.List;
 public class MovieReviewFragment extends Fragment {
     private static final String KEY_MOVIE_ID = "MOVIE_ID";
     private final int COUNT_PER_PAGE = 20;
-    private RecyclerView recycleView;
-    private MovieReviewAdapter adapter;
+    private RecyclerView recycleView = null;
+    private MovieReviewAdapter adapter = null;
+
+    private static final String KEY_REVIEWS = "reviews";
+    private static final String KEY_STATE = "state";
+    private static final String KEY_ENABLE_LOADING = "loading";
 
     public static MovieReviewFragment newInstance(String movieId) {
         Bundle args = new Bundle();
@@ -58,6 +65,29 @@ public class MovieReviewFragment extends Fragment {
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.small_padding)));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable state = recycleView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(KEY_STATE, state);
+        outState.putString(KEY_REVIEWS,
+                ModelUtil.toString(adapter.reviews, new TypeToken<List<Review>>(){}));
+        outState.putBoolean(KEY_ENABLE_LOADING, adapter.enableLoading);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            List<Review> reviews = ModelUtil.toObject(savedInstanceState.getString(KEY_REVIEWS),
+                    new TypeToken<List<Review>>(){});
+            adapter.appendReviews(reviews);
+            adapter.setEnableLoading(savedInstanceState.getBoolean(KEY_ENABLE_LOADING));
+            recycleView.getLayoutManager()
+                    .onRestoreInstanceState(savedInstanceState.getParcelable(KEY_STATE));
+        }
     }
 
     public class LoadReviewTask extends AsyncTask<Void, Void, List<Review>> {

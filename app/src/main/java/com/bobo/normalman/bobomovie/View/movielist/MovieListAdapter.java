@@ -22,16 +22,16 @@ import java.util.List;
  */
 
 class MovieListAdapter extends RecyclerView.Adapter {
-    private final List<Movie> data;
+    public final List<Movie> data;
     private static final int VIEW_TYPE_MOVIE = 0;
     private static final int VIEW_TYPE_LOADING = 1;
     private final LoadMoreListener loadMoreListener;
-    private boolean enableLoading;
-
+    public boolean enableLoading;
+    MovieListFragment fragment;
     public MovieListAdapter(MovieListFragment fragment, boolean enableLoading, List<Movie> movies, LoadMoreListener listener) {
         this.data = movies;
         this.loadMoreListener = listener;
-        MovieListFragment fragment1 = fragment;
+        this.fragment = fragment;
         this.enableLoading = enableLoading;
     }
 
@@ -70,6 +70,7 @@ class MovieListAdapter extends RecyclerView.Adapter {
                 break;
         }
     }
+
 
     @Override
     public int getItemCount() {

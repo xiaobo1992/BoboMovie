@@ -1,5 +1,6 @@
 package com.bobo.normalman.bobomovie.MovieDB;
 
+import com.bobo.normalman.bobomovie.BuildConfig;
 import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.model.Result;
 import com.bobo.normalman.bobomovie.model.Review;
@@ -21,7 +22,7 @@ import okhttp3.Response;
  */
 
 public class MovieDB {
-    private static final String API_KEY = "";
+    private static final String API_KEY = BuildConfig.API_KEY;
     private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static final String BASE_MOVIE_URL = BASE_URL + "movie/";
 

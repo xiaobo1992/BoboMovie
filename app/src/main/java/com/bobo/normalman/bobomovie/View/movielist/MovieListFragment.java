@@ -3,6 +3,7 @@ package com.bobo.normalman.bobomovie.View.movielist;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.os.AsyncTaskCompat;
@@ -15,7 +16,9 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.R;
 import com.bobo.normalman.bobomovie.Util.LikeMovieUtil;
+import com.bobo.normalman.bobomovie.Util.ModelUtil;
 import com.bobo.normalman.bobomovie.model.Movie;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,14 +30,20 @@ import java.util.List;
 
 public class MovieListFragment extends Fragment {
     private static final String KEY_TYPE = "VIEW_TYPE";
+
     public static final String KEY_POPULAR_TYPE = "popular";
     public static final String KEY_TOP_TYPE = "top_rated";
     public static final String KEY_TOP_FAVOURITE = "favourite";
+
+    private static final String KEY_MOVIES = "movies";
+    private static final String KEY_STATE = "state";
+    private static final String KEY_ENABLE_LOADING = "loading";
 
     private static final int COUNT_PER_PAGE = 20;
     private MovieListAdapter adapter = null;
     private RecyclerView recycleView = null;
     private String type = null;
+    GridLayoutManager layoutManager = null;
 
     public static MovieListFragment newInstance(String type) {
         Bundle args = new Bundle();
@@ -57,6 +66,7 @@ public class MovieListFragment extends Fragment {
         type = getArguments().getString(KEY_TYPE);
         switch (type) {
             case KEY_POPULAR_TYPE:
+
                 adapter = new MovieListAdapter(this, true, new ArrayList<Movie>(), new MovieListAdapter.LoadMoreListener() {
                     @Override
                     public void loadMore() {
@@ -82,7 +92,7 @@ public class MovieListFragment extends Fragment {
                 });
                 break;
         }
-        GridLayoutManager layoutManager = null;
+
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             layoutManager = new GridLayoutManager(getContext(), 2);
         } else {
@@ -98,6 +108,33 @@ public class MovieListFragment extends Fragment {
         if (type == KEY_TOP_FAVOURITE) {
             List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext());
             adapter.setData(movies);
+        }
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable state = layoutManager.onSaveInstanceState();
+        outState.putParcelable(KEY_STATE, state);
+        outState.putString(KEY_MOVIES, ModelUtil.toString(adapter.data,
+                new TypeToken<List<Movie>>() {
+                }));
+        outState.putBoolean(KEY_ENABLE_LOADING, adapter.enableLoading);
+    }
+
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null) {
+            Parcelable state = savedInstanceState.getParcelable(KEY_STATE);
+            List<Movie> movies = ModelUtil.toObject(savedInstanceState.getString(KEY_MOVIES),
+                    new TypeToken<List<Movie>>() {
+                    });
+            adapter.appendAllData(movies);
+            adapter.setEnableLoading(savedInstanceState.getBoolean(KEY_ENABLE_LOADING));
+            layoutManager.onRestoreInstanceState(state);
         }
     }
 

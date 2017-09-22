@@ -18,9 +18,9 @@ import java.util.List;
  */
 
 class MovieVideoAdapter extends RecyclerView.Adapter {
-    private final List<Video> videos;
+    public final List<Video> videos;
     private final LoadMoreListener listener;
-    private boolean enableLoading;
+    public boolean enableLoading;
     private static final int VIEW_TYPE_VIDEO = 0;
     private static final int VIEW_TYPE_LOADING = 1;
 
