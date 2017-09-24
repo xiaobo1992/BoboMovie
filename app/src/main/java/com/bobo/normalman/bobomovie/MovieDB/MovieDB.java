@@ -1,10 +1,16 @@
 package com.bobo.normalman.bobomovie.MovieDB;
 
+import android.util.Log;
+
 import com.bobo.normalman.bobomovie.BuildConfig;
+import com.bobo.normalman.bobomovie.model.Artist;
+import com.bobo.normalman.bobomovie.model.ArtistResult;
 import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.model.Result;
 import com.bobo.normalman.bobomovie.model.Review;
 import com.bobo.normalman.bobomovie.model.ReviewResult;
+import com.bobo.normalman.bobomovie.model.TV;
+import com.bobo.normalman.bobomovie.model.TVResult;
 import com.bobo.normalman.bobomovie.model.Video;
 import com.bobo.normalman.bobomovie.model.VideoResult;
 import com.google.gson.Gson;
@@ -25,6 +31,8 @@ public class MovieDB {
     private static final String API_KEY = BuildConfig.API_KEY;
     private static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static final String BASE_MOVIE_URL = BASE_URL + "movie/";
+    private static final String BASE_TV_URL = BASE_URL + "tv/";
+    private static final String BASE_PEOPLE_URL = BASE_URL + "person/";
 
     private static Response makeGetRequest(Request request) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -58,14 +66,32 @@ public class MovieDB {
     public static List<Review> getReviews(String movie_id, int page) throws IOException {
         String url = BASE_MOVIE_URL + movie_id + "/reviews?api_key=" + API_KEY + "&page=" + page;
         Request request = buildGetRequest(url);
-        ReviewResult result =  parseResponse(makeGetRequest(request), new TypeToken<ReviewResult>() {});
+        ReviewResult result = parseResponse(makeGetRequest(request), new TypeToken<ReviewResult>() {
+        });
         return result.results;
     }
 
-    public static List<Video> getVideos(String movie_id, int page) throws IOException{
+    public static List<Video> getVideos(String movie_id, int page) throws IOException {
         String url = BASE_MOVIE_URL + movie_id + "/videos?api_key=" + API_KEY + "&page=" + page;
         Request request = buildGetRequest(url);
-        VideoResult result =  parseResponse(makeGetRequest(request), new TypeToken<VideoResult>() {});
+        VideoResult result = parseResponse(makeGetRequest(request), new TypeToken<VideoResult>() {
+        });
+        return result.results;
+    }
+
+    public static List<TV> getTVs(String type, int page) throws IOException {
+        String url = BASE_TV_URL + type + "?api_key=" + API_KEY + "&page=" + page;
+        Request request = buildGetRequest(url);
+        TVResult result = parseResponse(makeGetRequest(request), new TypeToken<TVResult>() {
+        });
+        return result.results;
+    }
+
+    public static List<Artist> getArtists(String type, int page) throws IOException {
+        String url = BASE_PEOPLE_URL + type + "?api_key=" + API_KEY + "&page=" + page;
+        Request request = buildGetRequest(url);
+        ArtistResult result = parseResponse(makeGetRequest(request), new TypeToken<ArtistResult>() {
+        });
         return result.results;
     }
 }

@@ -7,5 +7,15 @@
 
     <string name="favourite">Favourite</string>
     <string name="video">Videos</string>
+    <string name="movie">Movie</string>
+    <string name="TV">TV</string>
+    <string name="artist">Artist</string>
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+    <string name="latest">Latest</string>
+    <string name="nowplaying">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="ontv">On TV</string>
+    <string name="air_today">Air Today</string>
 
 </resources>

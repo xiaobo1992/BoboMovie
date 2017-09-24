@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_popular"
+        android:title="@string/popular" />
+    <item
+        android:id="@+id/menu_top_rated"
+        android:title="@string/top_rated" />
+    <item
+        android:id="@+id/menu_on_tv"
+        android:title="@string/ontv"></item>
+    <item
+        android:id="@+id/menu_air_today"
+        android:title="@string/air_today"></item>
+    <item
+        android:id="@+id/menu_favourite"
+        android:title="@string/favourite" />
+</menu>
