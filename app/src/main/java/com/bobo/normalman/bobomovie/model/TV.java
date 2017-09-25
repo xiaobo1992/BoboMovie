@@ -11,4 +11,6 @@ public class TV {
     public String first_air_date;
     public String backdrop_path;
     public int id;
+    public boolean liked;
+    public double vote_average;
 }

@@ -12,8 +12,7 @@ import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.util.ImageUtil;
 import com.bobo.normalman.bobomovie.util.ModelUtil;
 import com.bobo.normalman.bobomovie.view.base.BaseListAdapter;
-import com.bobo.normalman.bobomovie.view.moviedetail.MovieDetailActivity;
-import com.bobo.normalman.bobomovie.view.moviedetail.profile.MovieProfileFragment;
+import com.bobo.normalman.bobomovie.view.moviedetail.MovieProfileActivity;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
@@ -42,12 +41,13 @@ public class MovieListAdapter extends BaseListAdapter<Movie> {
             @Override
             public void onClick(View view) {
                 Context context = holder.itemView.getContext();
-                Intent intent = new Intent(context, MovieDetailActivity.class);
-                String movieStr = ModelUtil.toString(data, new TypeToken<Movie>() {
+                Intent intent = new Intent(context, MovieProfileActivity.class);
+                String movie = ModelUtil.toString(data, new TypeToken<Movie>() {
                 });
-                intent.putExtra(MovieProfileFragment.KEY_MOVE, movieStr);
+                intent.putExtra(MovieProfileActivity.KEY_DATA, movie);
                 context.startActivity(intent);
             }
         });
+        movieListHolder.name.setText(data.title);
     }
 }

@@ -23,13 +23,13 @@ import java.util.List;
  * Created by xiaobozhang on 9/23/17.
  */
 
-public class ArtistFragment extends BaseListFragment {
+public class ArtistListFragment extends BaseListFragment {
     ArtistListAdapter adapter = null;
     public static final String KEY_POPULAR = "popular";
 
-    public static ArtistFragment newInstance() {
+    public static ArtistListFragment newInstance() {
         Bundle args = new Bundle();
-        ArtistFragment fragment = new ArtistFragment();
+        ArtistListFragment fragment = new ArtistListFragment();
         fragment.setArguments(args);
         return fragment;
     }

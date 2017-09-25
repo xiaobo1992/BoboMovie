@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.bobo.normalman.bobomovie.view.artistlist.ArtistFragment;
+import com.bobo.normalman.bobomovie.view.artistlist.ArtistListFragment;
 import com.bobo.normalman.bobomovie.view.movielist.MovieListFragment;
 import com.bobo.normalman.bobomovie.view.tvlist.TVListFragment;
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         setTitle(R.string.TV);
                         break;
                     case R.id.menu_artist:
-                        fragment = ArtistFragment.newInstance();
+                        fragment = ArtistListFragment.newInstance();
                         setTitle(getString(R.string.artist));
                 }
 

@@ -17,5 +17,6 @@
     <string name="upcoming">Upcoming</string>
     <string name="ontv">On TV</string>
     <string name="air_today">Air Today</string>
-
+    <string name="max_lines_2">2</string>
+    <string name="max_line_5">5</string>
 </resources>

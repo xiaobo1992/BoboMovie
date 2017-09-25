@@ -1,4 +1,4 @@
-package com.bobo.normalman.bobomovie.view.moviedetail.profile;
+package com.bobo.normalman.bobomovie.view.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,18 +8,18 @@ import android.widget.TextView;
 import com.bobo.normalman.bobomovie.R;
 
 /**
- * Created by xiaobozhang on 9/15/17.
+ * Created by xiaobozhang on 9/24/17.
  */
 
-class MovieProfileViewHolder extends RecyclerView.ViewHolder {
-    final ImageView imageView;
-    final ImageView like;
-    final TextView title;
-    final TextView release;
-    final TextView rating;
-    final TextView overview;
+public class BaseOverviewViewHolder extends RecyclerView.ViewHolder {
+    public ImageView imageView;
+    public ImageView like;
+    public TextView title;
+    public TextView release;
+    public TextView rating;
+    public TextView overview;
 
-    public MovieProfileViewHolder(View itemView) {
+    public BaseOverviewViewHolder(View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.movie_detail_image);
         title = itemView.findViewById(R.id.movie_detail_title);
