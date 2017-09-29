@@ -10,7 +10,7 @@ public class TV {
     public String overview;
     public String first_air_date;
     public String backdrop_path;
-    public int id;
+    public String id;
     public boolean liked;
     public double vote_average;
 }

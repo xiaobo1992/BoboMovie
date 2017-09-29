@@ -12,8 +12,8 @@ import com.bobo.normalman.bobomovie.model.TV;
 import com.bobo.normalman.bobomovie.util.ImageUtil;
 import com.bobo.normalman.bobomovie.util.ModelUtil;
 import com.bobo.normalman.bobomovie.view.base.BaseListAdapter;
-import com.bobo.normalman.bobomovie.view.moviedetail.ProfileActivity;
-import com.bobo.normalman.bobomovie.view.moviedetail.TVProfileActivity;
+import com.bobo.normalman.bobomovie.view.detail.ProfileActivity;
+import com.bobo.normalman.bobomovie.view.detail.TVProfileActivity;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;

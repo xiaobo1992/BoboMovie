@@ -19,4 +19,9 @@
     <string name="air_today">Air Today</string>
     <string name="max_lines_2">2</string>
     <string name="max_line_5">5</string>
+    <string name="similar">Similar</string>
+    <string name="recommend">Recommend</string>
+    <string name="cast">Cast</string>
+    <string name="crew">Crew</string>
+
 </resources>

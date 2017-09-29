@@ -12,7 +12,7 @@ import com.bobo.normalman.bobomovie.model.Movie;
 import com.bobo.normalman.bobomovie.util.ImageUtil;
 import com.bobo.normalman.bobomovie.util.ModelUtil;
 import com.bobo.normalman.bobomovie.view.base.BaseListAdapter;
-import com.bobo.normalman.bobomovie.view.moviedetail.MovieProfileActivity;
+import com.bobo.normalman.bobomovie.view.detail.MovieProfileActivity;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;

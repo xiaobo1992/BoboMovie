@@ -23,7 +23,7 @@ import java.util.List;
  * Created by xiaobozhang on 9/23/17.
  */
 
-public class TVListFragment extends BaseListFragment {
+public class TVListFragment extends BaseListFragment<TV> {
     public static final String KEY_TYPE = "type";
 
     public static final String KEY_POPULAR = "popular";

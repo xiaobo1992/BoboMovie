@@ -1,75 +1,62 @@
-package com.bobo.normalman.bobomovie.view.artistlist;
+package com.bobo.normalman.bobomovie.view.detail.cast;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.os.AsyncTaskCompat;
 import android.support.v7.widget.GridLayoutManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.bobo.normalman.bobomovie.MovieDB.MovieDB;
 import com.bobo.normalman.bobomovie.model.Artist;
+import com.bobo.normalman.bobomovie.view.artistlist.ArtistListAdapter;
+import com.bobo.normalman.bobomovie.view.artistlist.ArtistListFragment;
 import com.bobo.normalman.bobomovie.view.base.BaseListAdapter;
-import com.bobo.normalman.bobomovie.view.base.BaseListFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by xiaobozhang on 9/23/17.
+ * Created by xiaobozhang on 9/25/17.
  */
 
-public class ArtistListFragment extends BaseListFragment<Artist> {
-    public ArtistListAdapter adapter = null;
-    public static final String KEY_POPULAR = "popular";
+public class MovieCastFragment extends ArtistListFragment {
 
-    public static ArtistListFragment newInstance() {
+    public static final String KEY_MOVIE_ID = "movie_id";
+
+    public static MovieCastFragment newInstance(String movieID) {
         Bundle args = new Bundle();
-        ArtistListFragment fragment = new ArtistListFragment();
+        MovieCastFragment fragment = new MovieCastFragment();
+        args.putString(KEY_MOVIE_ID, movieID);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        setHasOptionsMenu(false);
+        final String movieID = getArguments().getString(KEY_MOVIE_ID);
         adapter = new ArtistListAdapter(new ArrayList<Artist>(), true, new BaseListAdapter.LoadMoreListener() {
             @Override
             public void loadMore() {
-                AsyncTaskCompat.executeParallel(new LoadArtistsTask(KEY_POPULAR, adapter.getDataCount() / COUNT_PER_PAGE + 1));
+                AsyncTaskCompat.executeParallel(new LoadMovieCastTask(movieID));
             }
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), getColumns()));
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        return;
-    }
+    class LoadMovieCastTask extends AsyncTask<Void, Void, List<Artist>> {
+        String movieID;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return false;
-    }
-
-    public class LoadArtistsTask extends AsyncTask<Void, Void, List<Artist>> {
-        String type;
-        int page;
-
-        public LoadArtistsTask(String type, int page) {
-            this.type = type;
-            this.page = page;
+        public LoadMovieCastTask(String movieID) {
+            this.movieID = movieID;
         }
 
         @Override
         protected List<Artist> doInBackground(Void... voids) {
             try {
-                return MovieDB.getArtists(type, page);
+                return MovieDB.getMovieCast(movieID);
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
@@ -85,5 +72,4 @@ public class ArtistListFragment extends BaseListFragment<Artist> {
             super.onPostExecute(artists);
         }
     }
-
 }

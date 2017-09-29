@@ -8,4 +8,5 @@ public class Artist {
     public String name;
     public String id;
     public String profile_path;
+    public String credit_id;
 }

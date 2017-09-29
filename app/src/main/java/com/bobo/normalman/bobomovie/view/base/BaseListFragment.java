@@ -18,7 +18,7 @@ import com.bobo.normalman.bobomovie.R;
  * Created by xiaobozhang on 9/23/17.
  */
 
-public abstract class BaseListFragment extends Fragment {
+public abstract class BaseListFragment<T> extends Fragment {
     public RecyclerView recyclerView;
     public static final int COUNT_PER_PAGE = 20;
     public static final int IMAGE_WIDTH = 400;
@@ -50,4 +50,5 @@ public abstract class BaseListFragment extends Fragment {
         if (nColumns < MIN_COLUMN) return MIN_COLUMN;
         return nColumns;
     }
+
 }

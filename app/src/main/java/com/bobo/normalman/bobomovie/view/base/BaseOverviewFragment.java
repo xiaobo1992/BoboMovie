@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bobo.normalman.bobomovie.R;
-import com.bobo.normalman.bobomovie.view.moviedetail.ProfileActivity;
+import com.bobo.normalman.bobomovie.view.detail.ProfileActivity;
 
 /**
  * Created by xiaobozhang on 9/24/17.
@@ -25,7 +25,6 @@ public abstract class BaseOverviewFragment<T> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d("base view", "created");
         View view = inflater.inflate(R.layout.fragment_recycleview, container, false);
         recycleView = view.findViewById(R.id.recycleview);
         return view;
@@ -34,7 +33,6 @@ public abstract class BaseOverviewFragment<T> extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         data = getData();
-        Log.d("data", getArguments().getString(ProfileActivity.KEY_DATA));
         adapter = setupAdapter(data);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));

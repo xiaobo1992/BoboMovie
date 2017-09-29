@@ -31,7 +31,7 @@ import java.util.List;
  * Created by xiaobozhang on 9/14/17.
  */
 
-public class MovieListFragment extends BaseListFragment {
+public class MovieListFragment extends BaseListFragment<Movie> {
     private static final String KEY_TYPE = "VIEW_TYPE";
 
     public static final String KEY_POPULAR = "popular";
@@ -44,10 +44,9 @@ public class MovieListFragment extends BaseListFragment {
     private static final String KEY_STATE = "state";
     private static final String KEY_ENABLE_LOADING = "loading";
 
-    private MovieListAdapter adapter = null;
-    private RecyclerView recycleView = null;
+    public MovieListAdapter adapter = null;
     private String type = null;
-    GridLayoutManager layoutManager = null;
+    public GridLayoutManager layoutManager = null;
 
     public static MovieListFragment newInstance(String type) {
         Bundle args = new Bundle();
@@ -61,7 +60,7 @@ public class MovieListFragment extends BaseListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycleview, container, false);
-        recycleView = view.findViewById(R.id.recycleview);
+        recyclerView = view.findViewById(R.id.recycleview);
         return view;
     }
 
@@ -71,27 +70,27 @@ public class MovieListFragment extends BaseListFragment {
         setHasOptionsMenu(true);
         switch (type) {
             case KEY_POPULAR:
-                setAdapter(type, true);
+                setupAdapter(type, true);
                 break;
             case KEY_TOP_RATE:
-                setAdapter(type, true);
+                setupAdapter(type, true);
                 break;
             case KEY_UPCOMING:
-                setAdapter(type, true);
+                setupAdapter(type, true);
                 break;
             case KEY_NOW_PALYING:
-                setAdapter(type, true);
+                setupAdapter(type, true);
                 break;
             case KEY_FAVOURITE:
                 List<Movie> movies = LikeMovieUtil.loadAllLikedMovie(getContext());
-                setAdapter(type, false);
+                setupAdapter(type, false);
                 adapter.appendAllData(movies);
                 break;
         }
 
         layoutManager = new GridLayoutManager(getContext(), getColumns());
-        recycleView.setAdapter(adapter);
-        recycleView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -103,7 +102,7 @@ public class MovieListFragment extends BaseListFragment {
         }
     }
 
-
+/*
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -129,7 +128,7 @@ public class MovieListFragment extends BaseListFragment {
             layoutManager.onRestoreInstanceState(state);
         }
     }
-
+*/
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_movie, menu);
@@ -173,7 +172,7 @@ public class MovieListFragment extends BaseListFragment {
         return false;
     }
 
-    public void setAdapter(final String type, boolean enableLoading) {
+    public void setupAdapter(final String type, boolean enableLoading) {
         adapter = new MovieListAdapter(new ArrayList<Movie>(), enableLoading,
                 new BaseListAdapter.LoadMoreListener() {
                     @Override

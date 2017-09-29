@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.moviedetail.PlayVideoActivity"/>
-        <activity android:name=".view.moviedetail.MovieProfileActivity"/>
-        <activity android:name=".view.moviedetail.TVProfileActivity"/>
-        <activity android:name=".view.moviedetail.ArtistProfileActivity"/>
+        <activity android:name=".view.detail.PlayVideoActivity"/>
+        <activity android:name=".view.detail.MovieProfileActivity"/>
+        <activity android:name=".view.detail.TVProfileActivity"/>
+        <activity android:name=".view.detail.ArtistProfileActivity"/>
         <provider
             android:name="com.bobo.normalman.bobomovie.likemovie.LikeMovieContentProvider"
             android:authorities="com.bobo.normalman.bobomovie"
