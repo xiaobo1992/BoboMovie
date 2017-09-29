@@ -175,4 +175,11 @@ public class MovieDB {
         });
         return credits.cast;
     }
+
+    public static Artist getArtistDetail(String person_id) throws IOException {
+        String url = BASE_PEOPLE_URL + person_id + "?api_key=" + API_KEY;
+        Request request = buildGetRequest(url);
+        Artist artist = parseResponse(makeGetRequest(request), new TypeToken<Artist>(){});
+        return artist;
+    }
 }

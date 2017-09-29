@@ -7,16 +7,28 @@ import android.widget.TextView;
 
 import com.bobo.normalman.bobomovie.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by xiaobozhang on 9/24/17.
  */
 
 public class ArtistOverviewViewHolder extends RecyclerView.ViewHolder {
-    public ImageView imageView;
-    public TextView name;
+
+    @BindView(R.id.artist_image)
+    ImageView imageView;
+    @BindView(R.id.artist_name)
+    TextView name;
+    @BindView(R.id.artist_birthday)
+    TextView birthday;
+    @BindView(R.id.artist_bio)
+    TextView bio;
+    @BindView(R.id.artist_place_of_birth)
+    TextView place;
+
     public ArtistOverviewViewHolder(View itemView) {
         super(itemView);
-        imageView = itemView.findViewById(R.id.artist_image);
-        name = itemView.findViewById(R.id.artist_name);
+        ButterKnife.bind(this, itemView);
     }
 }

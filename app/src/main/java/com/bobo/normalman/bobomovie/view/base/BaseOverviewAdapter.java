@@ -8,7 +8,7 @@ import android.view.ViewGroup;
  */
 
 public abstract class BaseOverviewAdapter<T> extends RecyclerView.Adapter {
-    T data;
+    public T data;
 
     public BaseOverviewAdapter(T data) {
         this.data = data;

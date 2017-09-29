@@ -1,18 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/medium_padding"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/medium_padding">
 
-    <ImageView
-        android:id="@+id/artist_image"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/image_height" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/artist_image"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/image_height"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/artist_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_toRightOf="@+id/artist_image"
+            android:textSize="@dimen/large_text_size"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/artist_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/artist_name"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_toRightOf="@+id/artist_image"
+            android:textSize="@dimen/medium_text_size"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/artist_place_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/artist_birthday"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_toRightOf="@id/artist_image"
+            android:textSize="@dimen/medium_text_size"
+            tools:text="@string/app_name" />
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/artist_name"
-        android:textSize="@dimen/large_text_size"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_padding"
+        android:text="@string/biography"
+        android:textSize="@dimen/large_text_size" />
+
+    <TextView
+        android:id="@+id/artist_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text_size" />
+
 </LinearLayout>

@@ -9,4 +9,7 @@ public class Artist {
     public String id;
     public String profile_path;
     public String credit_id;
+    public String birthday;
+    public String biography;
+    public String place_of_birth;
 }

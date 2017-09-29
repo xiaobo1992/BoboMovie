@@ -28,8 +28,16 @@ public class ArtistOverviewAdapter extends BaseOverviewAdapter<Artist> {
 
     @Override
     public void setProfile(Artist data, RecyclerView.ViewHolder holder) {
-        ArtistOverviewViewHolder viewHolder = (ArtistOverviewViewHolder)holder;
+        ArtistOverviewViewHolder viewHolder = (ArtistOverviewViewHolder) holder;
         ImageUtil.loadImage(viewHolder.itemView.getContext(), viewHolder.imageView, data.profile_path);
         viewHolder.name.setText(data.name);
+        viewHolder.birthday.setText(data.birthday);
+        viewHolder.bio.setText(data.biography);
+        viewHolder.place.setText(data.place_of_birth);
+    }
+
+    public void setData(Artist artist) {
+        this.data = artist;
+        notifyDataSetChanged();
     }
 }
