@@ -5,13 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bobo.normalman.bobomovie.R;
-import com.bobo.normalman.bobomovie.view.detail.ProfileActivity;
 
 /**
  * Created by xiaobozhang on 9/24/17.
